@@ -3,64 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Cursos - Prefeitura</title>
+    <title>Portal de Cursos - Apucarana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0056b3; /* Cor principal (ajuste conforme a identidade da prefeitura) */
-            --bg: #f4f7f6;
-            --text: #333;
+            --primary: #004a99; /* Azul institucional */
+            --secondary: #ffcc00; /* Amarelo detalhe */
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --text: #2c3e50;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
         
-        header { text-align: center; margin-bottom: 40px; }
-        
-        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        /* Header */
+        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        header p { margin: 10px 0 0; opacity: 0.9; }
 
-        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-        .card:hover { transform: translateY(-5px); }
+        /* Grid */
+        .container { flex: 1; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; max-width: 1100px; margin: 40px auto; padding: 0 20px; }
 
-        .card img { width: 100%; height: 200px; object-fit: cover; }
+        /* Card Moderno */
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-        .card-content { padding: 20px; text-align: center; }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+
+        .card-content { padding: 25px; display: flex; flex-direction: column; flex: 1; }
+        .card-content h3 { margin: 0 0 15px; color: var(--primary); font-size: 1.4rem; }
+        .card-content p { font-size: 0.95rem; line-height: 1.6; color: #666; flex: 1; }
         
         .btn-interesse { 
-            display: inline-block; background-color: var(--primary); color: white; padding: 12px 24px; 
-            text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 15px;
+            display: block; background: var(--primary); color: white; padding: 14px; 
+            text-align: center; text-decoration: none; border-radius: 8px; font-weight: 600; 
+            margin-top: 20px; transition: background 0.3s;
         }
+        .btn-interesse:hover { background: #003366; }
+
+        /* Footer */
+        footer { background: #333; color: #ccc; text-align: center; padding: 20px; font-size: 0.85rem; }
+        .version { color: var(--secondary); font-weight: bold; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Cursos Gratuitos de Qualificação</h1>
-        <p>Selecione o curso de seu interesse e faça sua pré-inscrição.</p>
+        <h1><i class="fas fa-graduation-cap"></i> Portal de Qualificação Profissional</h1>
+        <p>Prefeitura Municipal de Apucarana</p>
     </header>
 
-    <div class="container" id="lista-cursos">
-        </div>
+    <main class="container" id="lista-cursos">
+        </main>
+
+    <footer>
+        <p>© 2026 - Órgão Municipal Independente de Apucarana</p>
+        <span class="version">v1.0.0</span>
+    </footer>
 
     <script>
-        // Função para carregar os cursos do seu arquivo JSON
         fetch('cursos.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('lista-cursos');
-                data.forEach(curso => {
-                    const html = `
-                        <div class="card">
-                            <img src="${curso.imagem}" alt="${curso.titulo}">
-                            <div class="card-content">
-                                uint32_t<h3>${curso.titulo}</h3>
-                                <p>${curso.descricao}</p>
-                                <a href="${curso.linkForms}" target="_blank" class="btn-interesse">Tenho Interesse</a>
-                            </div>
+                container.innerHTML = data.map(curso => `
+                    <article class="card">
+                        <img src="${curso.imagem}" alt="${curso.titulo}">
+                        <div class="card-content">
+                            <h3>${curso.titulo}</h3>
+                            <p>${curso.descricao}</p>
+                            <a href="${curso.linkForms}" target="_blank" class="btn-interesse">
+                                <i class="fab fa-wpforms"></i> Registrar Interesse
+                            </a>
                         </div>
-                    `;
-                    container.innerHTML += html;
-                });
-            })
-            .catch(error => console.error('Erro ao carregar cursos:', error));
+                    </article>
+                `).join('');
+            });
     </script>
 </body>
 </html>
