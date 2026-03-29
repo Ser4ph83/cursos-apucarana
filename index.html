@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Cursos - Prefeitura</title>
+    <style>
+        :root {
+            --primary: #0056b3; /* Cor principal (ajuste conforme a identidade da prefeitura) */
+            --bg: #f4f7f6;
+            --text: #333;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        
+        header { text-align: center; margin-bottom: 40px; }
+        
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+
+        .card-content { padding: 20px; text-align: center; }
+        
+        .btn-interesse { 
+            display: inline-block; background-color: var(--primary); color: white; padding: 12px 24px; 
+            text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cursos Gratuitos de Qualificação</h1>
+        <p>Selecione o curso de seu interesse e faça sua pré-inscrição.</p>
+    </header>
+
+    <div class="container" id="lista-cursos">
+        </div>
+
+    <script>
+        // Função para carregar os cursos do seu arquivo JSON
+        fetch('cursos.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('lista-cursos');
+                data.forEach(curso => {
+                    const html = `
+                        <div class="card">
+                            <img src="${curso.imagem}" alt="${curso.titulo}">
+                            <div class="card-content">
+                                uint32_t<h3>${curso.titulo}</h3>
+                                <p>${curso.descricao}</p>
+                                <a href="${curso.linkForms}" target="_blank" class="btn-interesse">Tenho Interesse</a>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            })
+            .catch(error => console.error('Erro ao carregar cursos:', error));
+    </script>
+</body>
+</html>

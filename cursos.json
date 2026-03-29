@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "titulo": "Informática Básica para o Trabalho",
+    "descricao": "Aprenda Windows, Word e Excel do zero para o mercado de trabalho local.",
+    "imagem": "https://via.placeholder.com/400x250?text=Informatica+Basica",
+    "linkForms": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=TXb95_9G7kGMjOQeiklo7Wj0lE87jdRJmt6lzssk2c1UODNYUEpXVlJLQ0FFR0g3T1AxMTdQQ0dBWC4u"
+  },
+  {
+    "id": 2,
+    "titulo": "Auxiliar Administrativo",
+    "descricao": "Capacitação em rotinas administrativas, arquivos e atendimento ao cliente.",
+    "imagem": "https://via.placeholder.com/400x250?text=Auxiliar+Adm",
+    "linkForms": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=TXb95_9G7kGMjOQeiklo7Wj0lE87jdRJmt6lzssk2c1UODNYUEpXVlJLQ0FFR0g3T1AxMTdQQ0dBWC4u"
+  },
+  {
+    "id": 3,
+    "titulo": "Empreendedorismo Digital",
+    "descricao": "Como vender produtos e serviços usando as redes sociais e WhatsApp.",
+    "imagem": "https://via.placeholder.com/400x250?text=Empreendedorismo",
+    "linkForms": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=TXb95_9G7kGMjOQeiklo7Wj0lE87jdRJmt6lzssk2c1UODNYUEpXVlJLQ0FFR0g3T1AxMTdQQ0dBWC4u"
+  }
+]
