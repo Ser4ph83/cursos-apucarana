@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -82,3 +83,96 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Cursos - Apucarana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <img src="img/favicon.png" alt="Brasão Apucarana" class="header-logo">
+            <div>
+                <h1>Portal de Qualificação Profissional</h1>
+                <p>Cursos e programas de capacitação</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" id="lista-cursos">
+        <div class="skeleton-card">
+            <div class="skeleton-img skeleton"></div>
+            <div class="skeleton-text skeleton-title skeleton"></div>
+            <div class="skeleton-text skeleton-badge skeleton"></div>
+            <div class="skeleton-text skeleton-desc skeleton"></div>
+            <div class="skeleton-text skeleton-btn skeleton"></div>
+        </div>
+        <div class="skeleton-card">
+            <div class="skeleton-img skeleton"></div>
+            <div class="skeleton-text skeleton-title skeleton"></div>
+            <div class="skeleton-text skeleton-badge skeleton"></div>
+            <div class="skeleton-text skeleton-desc skeleton"></div>
+            <div class="skeleton-text skeleton-btn skeleton"></div>
+        </div>
+        <div class="skeleton-card">
+            <div class="skeleton-img skeleton"></div>
+            <div class="skeleton-text skeleton-title skeleton"></div>
+            <div class="skeleton-text skeleton-badge skeleton"></div>
+            <div class="skeleton-text skeleton-desc skeleton"></div>
+            <div class="skeleton-text skeleton-btn skeleton"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 - Órgão Municipal Independente de Apucarana</p>
+        <span class="version">v1.7.0</span>
+    </footer>
+
+    <script>
+        // ID da pergunta que você extraiu do link pré-preenchido
+        const idPerguntaCurso = "rbaeb4ba8fb7f41fe883954b12766ff0f";
+
+        fetch('cursos.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('lista-cursos');
+                container.innerHTML = data.map(curso => {
+
+                    // Monta o link: LinkBase + & + ID da Pergunta + = + Título do Curso
+                    const linkCompleto = `${curso.linkForms}&${idPerguntaCurso}=${encodeURIComponent(curso.titulo)}`;
+
+                    return `
+                    <article class="card">
+                        <img src="${curso.imagem}" alt="${curso.titulo}">
+                        <div class="card-content">
+                            <h3>${curso.titulo}</h3>
+                            <span class="badge-idade"><i class="fas fa-user-check"></i> +${curso.idademin} anos</span>
+                            <p>${curso.descricao}</p>
+                            <a href="${linkCompleto}" target="_blank" class="btn-interesse">
+                                <i class="fab fa-wpforms"></i> Registrar Interesse
+                            </a>
+                        </div>
+                    </article>
+                `;
+                }).join('');
+            });
+    </script>
+    <a href="https://wa.me/554334202800?text=Olá!%20Gostaria%20de%20informações%20sobre%20os%20cursos%20Oferecidos%20pelo%20site."
+        class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Dúvidas? Fale conosco</span>
+    </a>
+</body>
+
+</html>
+>>>>>>> fd73058 (Add favicon skelletor e pre-preenchimento dinamico no forms)
